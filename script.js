@@ -3,7 +3,7 @@
 let inputName = document.getElementById("inputName");
 let buttonInput = document.getElementById("button-input");
 let uploadName = document.getElementById("upload-name");
-let buttonUpload = document.getElementById("button-upload");
+// let buttonUpload = document.getElementById("button-upload");
     // output
 let homeGif = document.getElementById("homeGif");
 let homeSli = document.getElementById("homeSli");
@@ -31,15 +31,18 @@ const csvFile = document.getElementById("csvFile");
 
 myForm.addEventListener("submit", function (e) {
   e.preventDefault();
-  console.log("Form submitted");
+  const input = csvFile.files[0];
+  const reader = new FileReader();
+
+  reader.onload = function (e) {
+    const text = e.target.result;
+    console.log(text); // the CSV content as string
+    // document.write(text);    // chang new index
+  };
+
+  reader.readAsText(input);
+
 });
-
-
-const reader = new FileReader();
-reader.onload = function (event) {
-    console.log(event.target.result); // the CSV content as string
-};
-
 
 
 

@@ -43,20 +43,35 @@
             </div>      
         </div>
         <!-- 2.2 Upload file.csv -->
-        <div class="row g-3 align-items-center">            
-            <div class="col-auto">
-              <label for="upload-name" class="col-form-label">หรือ Upload CSV :</label>
-            </div>
-            <div class="col mb-2">
-                <input class="form-control" type="file" id="upload-name">
-            </div>   
-            <div class="col-auto text-center">
-                <button id="button-upload" type="submit" class="btn btn-primary style="width: 100%;">Upload</button>
-            </div>                       
+        <div class="row g-3 align-items-center">      
+            <form id="myForm">
+                <div class="col-auto">
+                    <label for="upload-name" class="col-form-label">หรือ Upload CSV :</label>
+                  </div>
+                  <div class="col mb-2">
+                      <input class="form-control" type="file" id="csvFile" accept=".csv">
+                  </div>   
+                  <div class="col-auto text-center">
+                      <button type="submit" class="btn btn-primary" style="width: 100%;" value="Submit">Upload</button>
+                  </div> 
+            </form>      
+                                  
         </div>        
         <!-- <hr mt-5 mb-5> -->
     </div>
     
+    <!-- <form id="myForm">
+        <input type="file" id="csvFile" accept=".csv" />
+        <br />
+        <input type="submit" value="Submit" />
+    </form> -->
+
+    <!-- <form id="myForm">  -->
+        <!-- <input type="file" id="csvFile" accept=".csv" /> -->
+        <!-- <br />
+        <input type="submit" value="Submit" />
+    </form> -->
+
 
     <!-- 3. Grid Report -->    
     <div class="mt-5 grid-report">
@@ -201,28 +216,6 @@
     </div>
 
     <!-- --------------------------------------------- -->
-
-
-
-
-
-    
-
-    <form id="myForm">
-        <input type="file" id="csvFile" accept=".csv" />
-        <br />
-        <input type="submit" value="Submit" />
-    </form>
-
-
-
-
-
-
-
-
-
-
 
 
 
