@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SelectedHat</title>
+
+    <!-- import Bootstrap5 & local CSS-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
+
+    <!-- import Google Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Itim&display=swap" rel="stylesheet">
+</head>
+
+
+
+
+<body>
+    
+    <!-- 1. Header -->
+    <div class="header position-relative">
+        <h1 class="text-center">หมวกคัดสรร 2022</h1>
+        <p class="text-center mt-5 h4 overflow-hidden">"ข้าจะเลือกบ้านใหม่ให้กับพ่อมดแม่มดอย่างพวกเจ้าเอง...ข้าอยู่มาเป็นร้อยปีแล้ว เลือกตั้งคราวนี้ อยู่ต่ออีก 4 ปี จะเป็นไร ฮ่า ๆๆๆ"</p>
+    </div>
+
+
+    <!-- 2. Form -->
+    <div class="container form-container">
+        <!-- 2.1 Manual typing -->
+        <div class="row g-3 align-items-center mb-2">
+            <div class="col-auto">
+              <label for="inputName" class="col-form-label">จงบอกชื่อของพวกเจ้า :</label>
+            </div>
+            <div class="col mb-2">
+              <input type="text" id="inputName" class="form-control mt-3" placeholder="(บอกข้ามาไม่งั้นข้าไม่ Run) ">
+            </div>          
+            <div class="col-auto text-center">
+                <button id="button-input" type="submit" class="btn btn-primary style="width: 100%;">Start</button>
+            </div>      
+        </div>
+        <!-- 2.2 Upload file.csv -->
+        <div class="row g-3 align-items-center">            
+            <div class="col-auto">
+              <label for="upload-name" class="col-form-label">หรือ Upload CSV :</label>
+            </div>
+            <div class="col mb-2">
+                <input class="form-control" type="file" id="upload-name">
+            </div>   
+            <div class="col-auto text-center">
+                <button id="button-upload" type="submit" class="btn btn-primary style="width: 100%;">Upload</button>
+            </div>                       
+        </div>        
+        <!-- <hr mt-5 mb-5> -->
+    </div>
+    
+
+    <!-- 3. Grid Report -->    
+    <div class="mt-5 grid-report">
+        <!-- header table -->
+        <div class="wrap-header">
+            <div class="row">
+                <div class="col text-center">
+                  กริฟฟินดอร์
+                </div>
+                <div class="col text-center">
+                  สลิธิรีน
+                </div>
+                <div class="col text-center">
+                  ฮัฟเฟิลพัฟฟ์
+                </div>
+                <div class="col text-center">
+                  เรเวนคลอ
+                </div>
+            </div>
+        </div>        
+        <hr>
+        <!-- data table -->
+        <div class="wrap-data m-2">
+            <div class="row">
+                <div class="col text-center">
+                    <p class="form-control btn-danger" id="homeGif" aria-label="Disabled input example" disabled>0</p>
+                </div>
+                <div class="col text-center">
+                    <p class="form-control btn-warning" id="homeSli" aria-label="Disabled input example" disabled>0</p>
+                </div>
+                <div class="col text-center">
+                    <p class="form-control btn-info" id="homeHuf" aria-label="Disabled input example" disabled>0</p>
+                </div>
+                <div class="col text-center">
+                    <p class="form-control btn-primary" id="homeRay" aria-label="Disabled input example" disabled>0</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- 4. table report button -->
+        <div class="wrap-data m-2">
+            <div class="row">
+                <div class="col text-center">
+                    <button type="submit" class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#modalReport1" id="tableGif">รายชื่อ</button>
+                </div>
+                <div class="col text-center">
+                    <button type="submit" class="btn btn-outline-warning" data-bs-toggle="modal" data-bs-target="#modalReport2" id="tableSli">รายชื่อ</button>
+                </div>
+                <div class="col text-center">
+                    <button type="submit" class="btn btn-outline-info" data-bs-toggle="modal" data-bs-target="#modalReport3" id="tableHuf">รายชื่อ</button>
+                </div>
+                <div class="col text-center">
+                    <button type="submit" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#modalReport4" id="tableRay">รายชื่อ</button>
+                </div>
+            </div>
+        </div>
+
+        <hr>
+        <!-- 5. total -->
+        <div class="wrap-data m-2">
+            <p class="form-control btn-dark text-center" aria-label="Disabled input example" disabled>รวมทุกบ้าน (คน)</p>
+            <p class="form-control btn-outline-dark text-center" id="total" aria-label="Disabled input example" disabled>0</p>
+        </div>
+        
+
+
+    </div>
+
+
+    <!-- 6. Modal popup report by ID -->
+    <!-- Tab 1 กริฟฟินดอร์ -->
+    <div class="modal fade" id="modalReport1" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">รายชื่อสมาชิกในบ้าน-กริฟฟินดอร์</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p id="reportPopup1"></p>
+            </div>
+            <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
+            </div>
+        </div>
+        </div>
+    </div>
+    <!-- Tab 2 สลิธิรีน -->
+    <div class="modal fade" id="modalReport2" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">รายชื่อสมาชิกในบ้าน-สลิธิรีน</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p id="reportPopup2"></p>
+            </div>
+            <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
+            </div>
+        </div>
+        </div>
+    </div>
+    <!-- Tab 3 ฮัฟเฟิลพัฟฟ์ -->
+    <div class="modal fade" id="modalReport3" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">รายชื่อสมาชิกในบ้าน-ฮัฟเฟิลพัฟฟ์</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p id="reportPopup3"></p>
+            </div>
+            <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
+            </div>
+        </div>
+        </div>
+    </div>
+    <!-- Tab 4 เรเวนคลอ -->
+    <div class="modal fade" id="modalReport4" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">รายชื่อสมาชิกในบ้าน-เรเวนคลอ</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p id="reportPopup4"></p>
+            </div>
+            <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
+            </div>
+        </div>
+        </div>
+    </div>
+
+    <!-- --------------------------------------------- -->
+
+
+
+
+
+    
+
+    <form id="myForm">
+        <input type="file" id="csvFile" accept=".csv" />
+        <br />
+        <input type="submit" value="Submit" />
+    </form>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <script src="/script.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+</body>
+</html>
