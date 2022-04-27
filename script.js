@@ -15,6 +15,7 @@ let homeRay = document.getElementById("homeRay");
  let tableHuf = document.getElementById("tableHuf");
  let tableRay = document.getElementById("tableRay");
     // modal report
+let reportPopup0 = document.getElementById("reportPopup0");   // csv
 let reportPopup1 = document.getElementById("reportPopup1");
 let reportPopup2 = document.getElementById("reportPopup2");
 let reportPopup3 = document.getElementById("reportPopup3");
@@ -24,10 +25,11 @@ let total = document.getElementById("total");
 
 
 
-// =================================================
+// CSV =================================================
 
 const myForm = document.getElementById("myForm");
 const csvFile = document.getElementById("csvFile");
+
 
 myForm.addEventListener("submit", function (e) {
   e.preventDefault();
@@ -38,13 +40,14 @@ myForm.addEventListener("submit", function (e) {
     const text = e.target.result;
     console.log(text); // the CSV content as string
     // document.write(text);    // chang new index
+    reportPopup0.innerHTML = text;      // madal then click upload
   };
 
   reader.readAsText(input);
 
 });
 
-
+reportPopup0
 
 
 
